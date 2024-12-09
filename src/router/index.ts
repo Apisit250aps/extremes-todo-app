@@ -1,35 +1,43 @@
-import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
-import HeroReverseLayout from '@/components/layouts/HeroReverseLayout.vue';
-import LoginView from '@/views/auth/LoginView.vue';
-import RegisterView from '@/views/auth/RegisterView.vue';
+import { createRouter, createWebHistory, type RouteRecordRaw } from "vue-router"
+import HomeView from "../views/HomeView.vue"
+import HeroReverseLayout from "@/components/layouts/HeroReverseLayout.vue"
+import LoginView from "@/views/auth/LoginView.vue"
+import RegisterView from "@/views/auth/RegisterView.vue"
+import DrawerLayout from "@/components/layouts/DrawerLayout.vue"
+
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
+  linkActiveClass:"active",
   routes: [
     {
-      path: '/',
-      name: 'home',
-      component: HomeView,
-    },
-    {
-      path: '/auth',
-      component: HeroReverseLayout,
-      children:[
+      path: "/",
+      component: DrawerLayout,
+      children: [
         {
-          path: 'login',
-          name: 'login',
-          component: LoginView,
-        },
-        {
-          path: 'register',
-          name: 'register',
-          component: RegisterView,
-        },
-        
+          path: "/",
+          name: "dashboard",
+          component: HomeView
+        }
       ]
     },
-  ],
+    {
+      path: "/auth",
+      component: HeroReverseLayout,
+      children: [
+        {
+          path: "login",
+          name: "login",
+          component: LoginView
+        },
+        {
+          path: "register",
+          name: "register",
+          component: RegisterView
+        }
+      ]
+    }
+  ]
 })
 
 export default router
