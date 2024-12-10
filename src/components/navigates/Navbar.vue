@@ -1,10 +1,11 @@
 <template>
   <div class="navbar bg-base-100">
-      <slot></slot>
+    <slot></slot>
     <div class="navbar-center lg:navbar-start">
-        <a class="btn btn-ghost text-xl">daisyUI</a>
+      <a class="btn btn-ghost text-xl">Hello' {{ user.username }}</a>
     </div>
     <div class="navbar-end">
+    
       <div class="dropdown dropdown-end">
         <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
           <div class="w-10 rounded-full">
@@ -21,17 +22,22 @@
           <li>
             <a class="justify-between">
               Profile
-              <span class="badge">New</span>
+              <span class="badge">{{ user.role }}</span>
             </a>
           </li>
           <li><a>Settings</a></li>
-          <li><a>Logout</a></li>
+          <li><a @click="auth.logout">Logout</a></li>
         </ul>
       </div>
     </div>
   </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { useAuthStore, type User } from "@/stores/auth"
+
+const auth = useAuthStore()
+const user = auth.user as User
+</script>
 
 <style scoped></style>

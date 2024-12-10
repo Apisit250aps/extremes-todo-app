@@ -1,3 +1,8 @@
+<script setup lang="ts">
+import { RouterView, RouterLink } from "vue-router"
+import Navbar from "../navigates/Navbar.vue"
+</script>
+
 <template>
   <div class="drawer lg:drawer-open">
     <input id="dashboard-drawer" type="checkbox" class="drawer-toggle" />
@@ -45,10 +50,5 @@
     </div>
   </div>
 </template>
-
-<script setup lang="ts">
-import { RouterView, RouterLink } from "vue-router"
-import Navbar from "../navigates/Navbar.vue"
-</script>
 
 <style scoped></style>
