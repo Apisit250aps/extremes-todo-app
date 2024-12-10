@@ -44,7 +44,20 @@ import Navbar from "../navigates/Navbar.vue"
       <ul class="menu bg-base-200 text-base-content min-h-full w-56 p-4">
         <!-- Sidebar content here -->
         <li>
-          <RouterLink to="/">Dashboard</RouterLink>
+          <h2 class="menu-title">Dashboard</h2>
+          <ul>
+            <li>
+              <RouterLink to="/dashboard">Dashboard</RouterLink>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <h2 class="menu-title">Manage</h2>
+          <ul>
+            <li>
+              <RouterLink to="/project">Projects</RouterLink>
+            </li>
+          </ul>
         </li>
       </ul>
     </div>

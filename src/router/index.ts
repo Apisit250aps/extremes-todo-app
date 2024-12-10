@@ -5,6 +5,7 @@ import LoginView from "@/views/auth/LoginView.vue";
 import RegisterView from "@/views/auth/RegisterView.vue";
 import DrawerLayout from "@/components/layouts/DrawerLayout.vue";
 import { useAuthStore } from "@/stores/auth";
+import ProjectView from "@/views/ProjectView.vue";
 
 const routes: RouteRecordRaw[] = [
   {
@@ -13,9 +14,14 @@ const routes: RouteRecordRaw[] = [
     meta: { requiresAuth: true }, // Add meta for protected route
     children: [
       {
-        path: "/",
+        path: "dashboard",
         name: "dashboard",
         component: HomeView,
+      },
+      {
+        path: "project",
+        name: "project",
+        component: ProjectView,
       },
     ],
   },
@@ -45,6 +51,9 @@ const router = createRouter({
 
 // Middleware: Authentication Guard
 router.beforeEach((to, from, next) => {
+  if (to.path=="/"){
+    next({ name: "dashboard" });
+  }
   const authStore = useAuthStore(); // Access the auth store
   if (to.meta.requiresAuth && !authStore.token) {
     // If the route requires auth and the user is not logged in, redirect to login
