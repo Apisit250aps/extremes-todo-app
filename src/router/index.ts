@@ -10,12 +10,12 @@ const routes: RouteRecordRaw[] = [
   {
     path: "/",
     component: DrawerLayout,
+    meta: { requiresAuth: true }, // Add meta for protected route
     children: [
       {
         path: "/",
         name: "dashboard",
         component: HomeView,
-        meta: { requiresAuth: true }, // Add meta for protected route
       },
     ],
   },
@@ -46,7 +46,6 @@ const router = createRouter({
 // Middleware: Authentication Guard
 router.beforeEach((to, from, next) => {
   const authStore = useAuthStore(); // Access the auth store
-
   if (to.meta.requiresAuth && !authStore.token) {
     // If the route requires auth and the user is not logged in, redirect to login
     next({ name: "login" });
